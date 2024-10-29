@@ -1,4 +1,4 @@
 package org.example;
 
-public class Foder {
+public class DogFood {
 }
