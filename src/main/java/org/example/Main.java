@@ -1,7 +1,6 @@
 package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +14,6 @@ public class Main {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        System.out.println("Connected to the database.");
         return conn;
     }
 
@@ -24,35 +22,69 @@ public class Main {
         System.out.println("Connecting to server.");
         Connection conn = getConnection();
         Scanner input = new Scanner(System.in);
-        String interfaceID = null;
-        String interfaceOwnerID = null;
-        String interfaceDogID = null;
-        String interfaceDogfoodID = null;
-        String interfaceStayID = null;
         String dogfoodChosen  = null;
 
         System.out.println("Welcome to the GREATEST Dogcareprogram of all time bitch");
-        System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+        System.out.println("Where do you want to go: Owner, Dog, or Stay?");
 
         mainMenuLoop:
         while (input.hasNext()) {
-            interfaceID = input.next();
-        switch (interfaceID){
+        switch (input.next()){
             case "Owner","owner":
                 System.out.println("Welcome to the Dogowner section.");
-                System.out.println("Would you like to do Create og Delete an owner, or Exit this section?");
+                System.out.println("Would you like to do CREATE, DELETE an owner, see ALL owners, see a SINGLE owner, or EXIT this section?");
 
                 while (input.hasNext()){
-                    interfaceOwnerID = input.next();
-                    switch (interfaceOwnerID){
+                    Scanner input1 = new Scanner(System.in);
+                    switch (input.next()){
                         case "Create","create":
-                            System.out.println("insert Code to Create owner");
-                            System.out.println("You are now back in the main menu.");
-                            continue mainMenuLoop;
+
+                            System.out.println("Insert details to create a new dog owner.");
+
+                            // Prompt for DogOwner details
+                            System.out.println("Enter Owner ID (integer): ");
+                            int ownerID = input1.nextInt();
+                            input1 = new Scanner(System.in);
+                            System.out.println("Enter Owner Name: ");
+                            String name = input1.nextLine();
+
+                            System.out.println("Enter Owner Address: ");
+                            String address = input1.nextLine();
+
+                            System.out.println("Enter Owner phonenumber: ");
+                            String phoneNumber = input1.nextLine();
+
+
+                            DogOwner dogOwner = new DogOwner(ownerID, name, address, phoneNumber);
+                            DogOwnerDao daoCreate = new DogOwnerDaoImpl();
+                            daoCreate.createDogOwner(dogOwner);
+                            daoCreate.readAllDogOwners();
+
+                            System.out.println("You are now back in the Owner section.");
+                            break;
 
                         case "Delete","delete":
-                            System.out.println("insert Code to Delete owner");
-                            continue mainMenuLoop;
+                            System.out.println("Please Type the ID of the owner you want to delete");
+                            DogOwnerDao daoDelete = new DogOwnerDaoImpl();
+                            daoDelete.deleteDogOwner(input.next());
+                            System.out.println("You are now back in the Owner section.");
+                            break;
+
+                        case "All","all":
+                            System.out.println("All the owners in the database");
+                            DogOwnerDao daoAll = new DogOwnerDaoImpl();
+                            daoAll.readAllDogOwners();
+                            System.out.println("You are now back in the Owner section.");
+                            break;
+
+                        case "Single","single":
+                            System.out.println("Please Type the ID of the owner you want to look up");
+                            DogOwnerDao daoSingle = new DogOwnerDaoImpl();
+                            String id = input.next();
+                            daoSingle.readDogOwner(id);
+                            daoSingle.dogsForDogOwners(id);
+                            System.out.println("You are now back in the Owner section.");
+                            break;
 
                         case "Exit","exit":
                             System.out.println("Return back to main interface");
@@ -73,8 +105,7 @@ public class Main {
                 System.out.println("Would you like to do Create, Delete a dog, setup a dogfood selection, or exit this section?");
                 //creates a loop when the dog section is picked, and lets your create, delete and selection of dogfood.
                 while (input.hasNext()) {
-                    interfaceDogID = input.next();
-                    switch (interfaceDogID) {
+                switch (input.next()) {
                         case "Create", "create":
                             System.out.println("insert Code to Create a dog");
                             continue mainMenuLoop;
@@ -90,8 +121,7 @@ public class Main {
                             System.out.println("Or type exit to exit this section");
                             //creates a loop for picking a type of dogfood inside the "Dog" section,
                             while (input.hasNext()) {
-                                interfaceDogfoodID = input.next();
-                                switch (interfaceDogfoodID) {
+                                switch (input.next()) {
                                     case "1":
                                         dogfoodChosen = "Standard tørfoder";
                                         System.out.println("You have chosen " + dogfoodChosen);
@@ -148,8 +178,7 @@ public class Main {
                 System.out.println("Would you like to do Create og Delete a stay, or Exit this section?");
 
                 while (input.hasNext()){
-                    interfaceStayID = input.next();
-                    switch (interfaceStayID){
+                switch (input.next()){
                         case "Create","create":
                             System.out.println("insert Code to Create a stay");
                             continue mainMenuLoop;
