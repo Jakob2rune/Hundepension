@@ -3,7 +3,7 @@ package org.example;
 
 import java.sql.*;
 
-public class StayDaoImpl implements StayDao {
+/*public class StayDaoImpl implements StayDao {
 
     private static final String URL = "jdbc:sqlserver://localhost;instanceName=TH;portNumber=1433;databaseName=DBHundepension";
     private static final String USERNAME = "sa"; // replace with your username
@@ -70,5 +70,5 @@ public class StayDaoImpl implements StayDao {
             System.out.println("No stays found.");
         }
     }
-}
+}*/
 

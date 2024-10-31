@@ -31,15 +31,15 @@ public class Main {
         String interfaceStayID = null;
         String dogfoodChosen  = null;
 
-        System.out.println("Welcome to the GREATEST Dogcareprogram of all time bitch");
-        System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+        System.out.println("Welcome to Rosa's Dog Daycare pension");
+        System.out.println("Where do you want to go? Type Owner, Dog, Dogfood or Stay to go there.");
 
         mainMenuLoop:
         while (input.hasNext()) {
             interfaceID = input.next();
         switch (interfaceID){
             case "Owner","owner":
-                System.out.println("Welcome to the Dogowner section.");
+                System.out.println("Welcome to the dog owner section.");
                 System.out.println("Would you like to do Create og Delete an owner, or Exit this section?");
 
                 while (input.hasNext()){
@@ -68,15 +68,24 @@ public class Main {
                 }
                 break;
 
-            case "Dog","dog":
-                System.out.println("Welcome to the Dog section.");
-                System.out.println("Would you like to do Create, Delete a dog, setup a dogfood selection, or exit this section?");
-                //creates a loop when the dog section is picked, and lets your create, delete and selection of dogfood.
+            case "Dog","dog": //Made by Louise
+                System.out.println("Welcome to the dog section.");
+                System.out.println("What would you like to do? Type: Create = create new dog, All = display all records on all dogs, read = read a specific dog: ");
+                //creates a loop when the dog section is picked, and lets you create or read dogs.
                 while (input.hasNext()) {
                     interfaceDogID = input.next();
                     switch (interfaceDogID) {
-                        case "Create", "create":
-                            System.out.println("insert Code to Create a dog");
+                        case "Create", "create": //Uses the user inputs for the parameters and creates a new dog in the database using the Dog constructor.
+
+                            Dog dog = Dog.createDogFromScanner(input); //Uses the method from the Dog class to
+                            DogDao daoCreate = new DogDaoImpl();
+                            daoCreate.createDog(dog);
+                            break;
+
+                        case "All","all":
+                            System.out.println("Do you want to see all info on the dogs?: ");
+                            DogDao daoReadAll = new DogDaoImpl();
+                            daoReadAll.readAllDogs();
                             continue mainMenuLoop;
 
                         case "Delete", "delete":

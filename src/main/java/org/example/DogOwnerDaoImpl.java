@@ -3,7 +3,7 @@ package org.example;
 
 import java.sql.*;
 
-public class DogOwnerDaoImpl implements DogOwnerDao {
+/*public class DogOwnerDaoImpl implements DogOwnerDao {
 
     private static final String URL = "jdbc:sqlserver://localhost;instanceName=TH;portNumber=1433;databaseName=DBHundepension";
     private static final String USERNAME = "sa"; // replace with your username
@@ -70,5 +70,5 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
             System.out.println("No dog owner found.");
         }
     }
-}
+}*/
 
