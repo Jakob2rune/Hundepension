@@ -91,6 +91,9 @@ public class Main {
 
                         case "Read","read":
                             System.out.println("What dog do you want to see specifics on? Type in the dog's ID: ");
+                            DogDao daoReadDog = new DogDaoImpl();
+                            daoReadDog.readDog(input.nextInt());
+                            break;
 
 
                         case "Delete", "delete":

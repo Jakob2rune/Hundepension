@@ -51,25 +51,42 @@ public class DogDaoImpl implements DogDao {
 
     /**
      * Makes sure that the user can read all the records for a specific dog from the database using the dog's IDNo.
-     * @param no
+     * @param dogID The ID of the dog that is used to get the information of that specific dog from the database.
      * @throws Exception if a database connection or SQL operation fails.
      */
     @Override
-    public void readDog(String no) throws Exception{
+    public void readDog(int dogID) throws Exception{
         String sql = "SELECT * FROM tblHund WHERE fldHundeID = ?";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, no);
+        pstmt.setInt(1, dogID);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
             Dog dog = new Dog();
             dog.setDogId(rs.getInt(1));
             dog.setOwnerId(rs.getInt(2));
             dog.setDogName(rs.getString(3));
+            dog.setBirthDate(rs.getString(4));
+            dog.setBreed(rs.getString(5));
+            dog.setSpecialNeeds(rs.getString(6));
+            dog.setVet(rs.getString(7));
+            dog.setVaccination(rs.getString(8));
+            dog.setFleaTreatment(rs.getString(9));
+            dog.setInsurance(rs.getString(10));
 
-            System.out.println(dog.getDogId() + " " +  dog.getOwnerId() + " " + dog.getDogName() + " ");
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
+                    "Hunde ID: " + dog.getDogId(),
+                    "Ejer ID: " + dog.getOwnerId(),
+                    "Navn: " + dog.getDogName().trim(),
+                    "Foedselsdag: " + dog.getBirthDate().trim(),
+                    "Hunderace: " + dog.getBreed().trim(),
+                    "Saerlige behov: " + dog.getSpecialNeeds().trim(),
+                    "Foretrukne dyrlaege: " + dog.getVet().trim(),
+                    "Vaccineret: " + dog.getVaccination().trim(),
+                    "Loppebehandling: " + dog.getFleaTreatment().trim(),
+                    "Forsikring + policenummer: " + dog.getInsurance().trim());
         } else {
-            System.out.println("No dog found with ID: " + no);
+            System.out.println("No dog found with ID: " + dogID);
         }
     }
 
@@ -97,7 +114,18 @@ public class DogDaoImpl implements DogDao {
             dog.setVaccination(rs.getString(8));
             dog.setFleaTreatment(rs.getString(9));
             dog.setInsurance(rs.getString(10));
-            System.out.printf("%d %d %s %s %s %s %s %s %s %s\n", dog.getDogId(), dog.getOwnerId(), dog.getDogName(), dog.getBirthDate(), dog.getBreed(), dog.getSpecialNeeds(), dog.getVet(), dog.getVaccination(), dog.getFleaTreatment(), dog.getInsurance());
+
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
+                    "Hunde ID: " + dog.getDogId(),
+                    "Ejer ID: " + dog.getOwnerId(),
+                    "Navn: " + dog.getDogName().trim(),
+                    "Foedselsdag: " + dog.getBirthDate().trim(),
+                    "Hunderace: " + dog.getBreed().trim(),
+                    "Saerlige behov: " + dog.getSpecialNeeds().trim(),
+                    "Foretrukne dyrlaege: " + dog.getVet().trim(),
+                    "Vaccineret: " + dog.getVaccination().trim(),
+                    "Loppebehandling: " + dog.getFleaTreatment().trim(),
+                    "Forsikring + policenummer: " + dog.getInsurance().trim());
         }
         if (!hasDogs) {
             System.out.println("No dogs found.");
