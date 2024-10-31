@@ -21,7 +21,7 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
         String sql = "INSERT INTO tblEjer VALUES (?, ?, ?,?)";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, dogOwner.getownerID()); //- Hvilke metoder skal laves?
+        pstmt.setInt(1, dogOwner.getownerID());
         pstmt.setString(2, dogOwner.getName());
         pstmt.setString(3, dogOwner.getAddress());
         pstmt.setString(4, dogOwner.getPhonenumber());
@@ -46,7 +46,18 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
             dogOwner.setName(rs.getString(2));
             dogOwner.setAddress(rs.getString(3));
             dogOwner.setPhonenumber(rs.getString(4));
-            System.out.println(dogOwner.getownerID() + " " + dogOwner.getName() + " " + dogOwner.getAddress() + " " + dogOwner.getPhonenumber());
+            System.out.println(String.format(
+                    "%-10s %-20s %-30s %-15s",
+                    "Owner ID", "Owner Name", "Address", "Phone Number"
+            ));
+            System.out.println("--------------------------------------------------------------------------");
+            System.out.println(String.format(
+                    "%-10d %-20s %-30s %-15s",
+                    dogOwner.getownerID(),
+                    dogOwner.getName().trim(),
+                    dogOwner.getAddress().trim(),
+                    dogOwner.getPhonenumber().trim()
+            ));
         } else {
             System.out.println("No dog owner found with ID: " + no);
         }
@@ -66,7 +77,18 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
             dogOwner.setName(rs.getString(2));
             dogOwner.setAddress(rs.getString(3));
             dogOwner.setPhonenumber(rs.getString(4));
-            System.out.println(dogOwner.getownerID() + " " + dogOwner.getName() + dogOwner.getAddress() + dogOwner.getPhonenumber());
+            System.out.println(String.format(
+                    "%-10s %-20s %-30s %-15s",
+                    "Owner ID", "Owner Name", "Address", "Phone Number"
+            ));
+            System.out.println("--------------------------------------------------------------------------");
+            System.out.println(String.format(
+                    "%-10d %-20s %-30s %-15s",
+                    dogOwner.getownerID(),
+                    dogOwner.getName().trim(),
+                    dogOwner.getAddress().trim(),
+                    dogOwner.getPhonenumber().trim()
+            ));
         }
         if (!hasDogOwners) {
             System.out.println("No dogowners found.");

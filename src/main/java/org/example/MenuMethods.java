@@ -10,7 +10,9 @@ public class MenuMethods {
         // Prompt for DogOwner details
         System.out.println("Enter Owner ID (integer): ");
         int ownerID = input.nextInt();
-        input = new Scanner(System.in);
+
+        //input = new Scanner(System.in);
+
         System.out.println("Enter Owner Name: ");
         String name = input.nextLine();
 
