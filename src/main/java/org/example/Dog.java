@@ -132,19 +132,28 @@ public class Dog {
     }
 
     public static Dog createDogFromScanner (Scanner input) {
-        System.out.println("Indtast Hunde ID for at tilføje en ny hund. (Det skal være et nyt nummer for hver ny hund, der tilføjes): ");
+        System.out.println("Indtast Hundens ID for at tilføje en ny hund. (Det skal være et nyt nummer for hver ny hund, der tilføjes).\nIndtil videre eksisterer disse: ");
         int dogID = input.nextInt();
         input.nextLine();
 
-        System.out.println("Indtast Ejer ID: ");
+        System.out.println("Indtast Ejerens ID Nr.: ");
         int ownerID = input.nextInt();
         input.nextLine();
 
         System.out.println("Indtast hundens navn: ");
         String dogName = input.nextLine();
 
-        System.out.println("Indtast hundens foedselsdag (yyyy.mm.dd): ");
-        String birthdate = input.nextLine();
+        String birthdate;
+        while (true){
+            System.out.println("Indtast hundens foedselsdag (yyyy-mm-dd): ");
+            birthdate = input.nextLine();
+            if (birthdate.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+                break;
+            }
+            else {
+                System.out.println("Dette er ikke et gyldigt format. Du skal indtaste: yyyy-mm-dd");
+            }
+        }
 
         System.out.println("Indtast hunderace: ");
         String breed = input.nextLine();
@@ -155,11 +164,31 @@ public class Dog {
         System.out.println("Indtast foretrukne dyrlaege: ");
         String preferredVet = input.nextLine();
 
-        System.out.println(" Er hunden vaccineret? Skriv ja eller nej: ");
-        String vaccinated = input.nextLine();
+        String vaccinated;
+        do {
+            System.out.println("Er hunden vaccineret? Skriv ja eller nej: ");
+            vaccinated = input.nextLine();
+            if (!vaccinated.equalsIgnoreCase("ja") && !vaccinated.equalsIgnoreCase("nej")) {
+                System.out.println("Ikke gyldig indtastning. Skriv ja eller nej: ");
+            }
+        } while (!vaccinated.equalsIgnoreCase("ja") && !vaccinated.equalsIgnoreCase("nej"));
+        if (vaccinated.equalsIgnoreCase("nej")) {
+            System.out.println("Hunden skal være vaccineret for at kunne blive passet her!\nDu sendes tilbage til hundemenuen.");
+            return null;
+        }
 
-        System.out.println("Har hunden fået loppebehandling? Skriv ja eller nej: ");
-        String fleaTreatment = input.nextLine();
+        String fleaTreatment;
+        do {
+            System.out.println("Har hunden fået loppebehandling? Skriv ja eller nej: ");
+            fleaTreatment = input.nextLine();
+            if (!fleaTreatment.equalsIgnoreCase("ja") && !fleaTreatment.equalsIgnoreCase("nej")) {
+                System.out.println("Ikke gyldig indtastning. Skriv ja eller nej: ");
+            }
+        } while (!fleaTreatment.equalsIgnoreCase("ja") && !fleaTreatment.equalsIgnoreCase("nej"));
+        if (fleaTreatment.equalsIgnoreCase("nej")) {
+            System.out.println("Hunden skal være loppebehandlet for at kunne blive passet her!\nDu sendes tilbage til hundemenuen.");
+            return null;
+        }
 
         System.out.println("Indtast hundens forsikringsselskab og policenummer: ");
         String insuranceCompany = input.nextLine();

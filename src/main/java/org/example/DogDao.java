@@ -1,6 +1,10 @@
 package org.example;
 
-//Made by Louise
+/**
+ * Made by Louise
+ * The class that
+ */
+
 public interface DogDao {
     void readDog(int dogId) throws Exception;
     void readAllDogs() throws Exception;

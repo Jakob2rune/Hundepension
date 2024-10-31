@@ -74,17 +74,7 @@ public class DogDaoImpl implements DogDao {
             dog.setFleaTreatment(rs.getString(9));
             dog.setInsurance(rs.getString(10));
 
-            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
-                    "Hunde ID: " + dog.getDogId(),
-                    "Ejer ID: " + dog.getOwnerId(),
-                    "Navn: " + dog.getDogName().trim(),
-                    "Foedselsdag: " + dog.getBirthDate().trim(),
-                    "Hunderace: " + dog.getBreed().trim(),
-                    "Saerlige behov: " + dog.getSpecialNeeds().trim(),
-                    "Foretrukne dyrlaege: " + dog.getVet().trim(),
-                    "Vaccineret: " + dog.getVaccination().trim(),
-                    "Loppebehandling: " + dog.getFleaTreatment().trim(),
-                    "Forsikring + policenummer: " + dog.getInsurance().trim());
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n", "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(), "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(), "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(), "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(), "Forsikring + policenummer: " + dog.getInsurance().trim());
         } else {
             System.out.println("Der er ikke fundet en hund med IDNo.: " + dogID);
         }
@@ -115,17 +105,7 @@ public class DogDaoImpl implements DogDao {
             dog.setFleaTreatment(rs.getString(9));
             dog.setInsurance(rs.getString(10));
 
-            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
-                    "Hunde ID: " + dog.getDogId(),
-                    "Ejer ID: " + dog.getOwnerId(),
-                    "Navn: " + dog.getDogName().trim(),
-                    "Foedselsdag: " + dog.getBirthDate().trim(),
-                    "Hunderace: " + dog.getBreed().trim(),
-                    "Saerlige behov: " + dog.getSpecialNeeds().trim(),
-                    "Foretrukne dyrlaege: " + dog.getVet().trim(),
-                    "Vaccineret: " + dog.getVaccination().trim(),
-                    "Loppebehandling: " + dog.getFleaTreatment().trim(),
-                    "Forsikring + policenummer: " + dog.getInsurance().trim());
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n", "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(), "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(), "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(), "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(), "Forsikring + policenummer: " + dog.getInsurance().trim());
         }
         if (!hasDogs) {
             System.out.println("Ingen hunde fundet!");

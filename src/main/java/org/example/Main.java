@@ -31,8 +31,8 @@ public class Main {
         String interfaceStayID = null;
         String dogfoodChosen  = null;
 
-        System.out.println("Welcome to Rosa's Dog Daycare pension");
-        System.out.println("Where do you want to go? Type Owner, Dog, Dogfood or Stay to go there.");
+        System.out.println("Velkommen til Rosa's hundepension");
+        System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
 
         mainMenuLoop:
         while (input.hasNext()) {
@@ -68,39 +68,53 @@ public class Main {
                 }
                 break;
 
-            case "Dog","dog": //Made by Louise
+            case "Hund","hund": //Made by Louise
                 System.out.println("Velkommen til hundesektionen.");
-                System.out.println("Hvad vil du foretage dig? Indtast: Create = Opret ny hund, All = få vist alle eksisterende hunde i databasen, Read = Se detaljer for en specifik hund, Delete = Slet en hund i databasen: ");
+                System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                 //creates a loop when the dog section is picked, and lets you create or read dogs.
                 while (input.hasNext()) {
                     interfaceDogID = input.next();
                     switch (interfaceDogID) {
-                        case "Create", "create": //Uses the user inputs for the parameters and creates a new dog in the database using the Dog constructor.
-
+                        case "1": //Uses the user inputs for the parameters and creates a new dog in the database using the Dog constructor.
                             Dog dog = Dog.createDogFromScanner(input); //Uses the method from the Dog class to
-                            DogDao daoCreate = new DogDaoImpl();
-                            daoCreate.createDog(dog);
-                            daoCreate.readAllDogs();
+                            if (dog != null) {
+                                DogDao daoCreate = new DogDaoImpl();
+                                daoCreate.createDog(dog);
+                                daoCreate.readAllDogs();
+                            }
+                            System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
-                        case "All","all":
+                        case "2":
                             System.out.println("Her er alle informationer på de eksisterende hunde : ");
                             DogDao daoReadAll = new DogDaoImpl();
                             daoReadAll.readAllDogs();
+                            System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
-                        case "Read","read":
-                            System.out.println("What dog do you want to see specifics on? Type in the dog's ID: ");
+                        case "3":
+                            System.out.println("Skriv ID Nr. på den hund du ønsker at se specifikationer på: ");
                             DogDao daoReadDog = new DogDaoImpl();
                             daoReadDog.readDog(input.nextInt());
+                            System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
 
-                        case "Delete", "delete":
-                            System.out.println("insert Code to Delete a dog");
+                        case "4":
+                            DogDao daoDelete = new DogDaoImpl();
+                            daoDelete.readAllDogs();
+                            System.out.println("Skriv ID Nr. på den hund du ønsker at slette i databasen: ");
+                            daoDelete.deleteDog(input.nextInt());
+                            daoDelete.readAllDogs();
+                            System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
-                        case "Dogfood","dogfood":
+                        case "5":
+                            System.out.println("Du sendes nu retur til hovedmenuen.");
+                            System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
+                            continue mainMenuLoop;
+
+                        /*case "Dogfood","dogfood":
                             System.out.println("Welcome to the Dogfood section.");
                             System.out.println("What would kind of dogfood would you like to chose?");
                             System.out.println("Standard tørfoder[1]\nTørfoder til unge hunde[2]\nTørfoder til gamle hunde[3]\nLuksusfoder[4]\nDiæt foder[5]");
@@ -143,12 +157,7 @@ public class Main {
                                         continue;
                                 }
                             }
-                            break;
-
-                        case "Exit", "exit":
-                            System.out.println("Return back to main interface");
-                            System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                            continue mainMenuLoop;
+                            break;*/
 
                         default:
                             //Writes an "invalid choice" And lets you try again.
