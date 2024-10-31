@@ -71,48 +71,48 @@ public class Main {
             case "Hund","hund": //Made by Louise
                 System.out.println("Velkommen til hundesektionen.");
                 System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
-                //creates a loop when the dog section is picked, and lets you create or read dogs.
+                //creates a loop when the dog section is picked, and lets you create, read or delete dogs or exit the program and return to the Main menu.
                 while (input.hasNext()) {
                     interfaceDogID = input.next();
                     switch (interfaceDogID) {
                         case "1": //Uses the user inputs for the parameters and creates a new dog in the database using the Dog constructor.
-                            Dog dog = Dog.createDogFromScanner(input); //Uses the method from the Dog class to
-                            if (dog != null) {
+                            Dog dog = Dog.createDogFromScanner(input); //Calls the method from the Dog class.
+                            if (dog != null) { //Checks to see if we have the correct requirements for the dog to stay at the pension - Vaccination and flea treatment.
                                 DogDao daoCreate = new DogDaoImpl();
-                                daoCreate.createDog(dog);
-                                daoCreate.readAllDogs();
+                                daoCreate.createDog(dog); //Saves the newly created dog in to the database.
+                                daoCreate.readAllDogs(); //Displays an updated list of all the records of all the dogs in the database.
                             }
                             System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
                         case "2":
-                            System.out.println("Her er alle informationer på de eksisterende hunde : ");
+                            System.out.println("Her er alle informationer på de eksisterende hunde i dit system: ");
                             DogDao daoReadAll = new DogDaoImpl();
-                            daoReadAll.readAllDogs();
+                            daoReadAll.readAllDogs(); //Displays the list of all records of all dogs in the database.
                             System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
                         case "3":
                             System.out.println("Skriv ID Nr. på den hund du ønsker at se specifikationer på: ");
                             DogDao daoReadDog = new DogDaoImpl();
-                            daoReadDog.readDog(input.nextInt());
+                            daoReadDog.readDog(input.nextInt()); //Displays the record from the database for a specific dog.
                             System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
 
                         case "4":
                             DogDao daoDelete = new DogDaoImpl();
-                            daoDelete.readAllDogs();
+                            daoDelete.readAllDogs(); //Displays the list of all the dogs in the database.
                             System.out.println("Skriv ID Nr. på den hund du ønsker at slette i databasen: ");
-                            daoDelete.deleteDog(input.nextInt());
-                            daoDelete.readAllDogs();
+                            daoDelete.deleteDog(input.nextInt()); //Deletes the record for the specific dog chosen.
+                            daoDelete.readAllDogs();//Displays the list of all records of all dogs in the database.
                             System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             break;
 
                         case "5":
                             System.out.println("Du sendes nu retur til hovedmenuen.");
                             System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
-                            continue mainMenuLoop;
+                            continue mainMenuLoop; //Lets the user back to the Main menu to either start anew or exit the program completely.
 
                         /*case "Dogfood","dogfood":
                             System.out.println("Welcome to the Dogfood section.");
@@ -160,9 +160,9 @@ public class Main {
                             break;*/
 
                         default:
-                            //Writes an "invalid choice" And lets you try again.
-                            System.out.println("Invalid choice, please try again");
-                            System.out.println("Would you like to do Create og Delete a dog?");
+                            //If an invalid choice is typed in the porgram warns you and lets you try again.
+                            System.out.println("Ikke gyldig indtasning. Prøv igen");
+                            System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             continue;
                     }
                 }
@@ -190,7 +190,7 @@ public class Main {
                             continue mainMenuLoop;
 
                         default:
-                            //Writes an "invalid choice" And lets you try again.
+                            //Let  And lets you try again.
                             System.out.println("Invalid choice, please try again");
                             System.out.println("Would you like to do Create og Delete a stay, or exit this section?");
                             continue;

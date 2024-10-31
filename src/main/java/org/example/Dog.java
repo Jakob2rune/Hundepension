@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Made by Louise.
- * The class where the blueprint for the dog is made. Here the variables and methods are held.
+ * The class where the blueprint for the dog is made. Here the variables and methods are held. They are all encapsulated.
  */
 public class Dog {
     private int dogId;       // Identifier for the dog
@@ -45,10 +45,14 @@ public class Dog {
         this.insurance = insurance;
     }
 
+    /**
+     * Another constructor with no parameters.
+     **/
     public Dog() {
 
     }
 
+    //Below a get and set method for each instance variable to make sure other methods and classes are able to read and change the variables safely.
     public int getDogId() {
         return dogId;
     }
@@ -131,6 +135,11 @@ public class Dog {
         this.insurance = insurance;
     }
 
+    /**
+     * A method to create a new record in the database of the Dog class.
+     * @param input Reads the user input which will be used for each attribute in the database.
+     * @return
+     */
     public static Dog createDogFromScanner (Scanner input) {
         System.out.println("Indtast Hundens ID for at tilføje en ny hund. (Det skal være et nyt nummer for hver ny hund, der tilføjes).\nIndtil videre eksisterer disse: ");
         int dogID = input.nextInt();
@@ -164,6 +173,7 @@ public class Dog {
         System.out.println("Indtast foretrukne dyrlaege: ");
         String preferredVet = input.nextLine();
 
+        //Makes sure to write only "ja" or "nej" to the database and checks whether the dog has met the requirement of vaccination. If not, the user is sent back to the menu of the dog.
         String vaccinated;
         do {
             System.out.println("Er hunden vaccineret? Skriv ja eller nej: ");
@@ -177,6 +187,7 @@ public class Dog {
             return null;
         }
 
+        //Makes sure to write only "ja" or "nej" to the database and checks whether the dog has met the requirement of flea treatment. If not, the user is sent back to the menu of the dog.
         String fleaTreatment;
         do {
             System.out.println("Har hunden fået loppebehandling? Skriv ja eller nej: ");

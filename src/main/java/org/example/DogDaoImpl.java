@@ -7,6 +7,11 @@ import java.sql.*;
  * This class makes sure that the user can create and store a new dog in the database and also read existing dog records.
  * It also implements methods to  connect to the database and insert or select new og existing dog records.
  */
+
+/**
+ * This method allows this program to connect to our database in SQL. When connection is established we will be able to
+ * perform SQL commands such as Insert into, Select, Select * and delete.
+ */
 public class DogDaoImpl implements DogDao {
 
     private static final String URL = "jdbc:sqlserver://localhost;instanceName=TH;portNumber=1433;databaseName=DBHundepension";
@@ -74,7 +79,13 @@ public class DogDaoImpl implements DogDao {
             dog.setFleaTreatment(rs.getString(9));
             dog.setInsurance(rs.getString(10));
 
-            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n", "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(), "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(), "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(), "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(), "Forsikring + policenummer: " + dog.getInsurance().trim());
+            //Formatting the output to give a better overview of the tables and attributes from the database.
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
+                    "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(),
+                    "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(),
+                    "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(),
+                    "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
+                    "Forsikring + policenummer: " + dog.getInsurance().trim());
         } else {
             System.out.println("Der er ikke fundet en hund med IDNo.: " + dogID);
         }
@@ -105,7 +116,12 @@ public class DogDaoImpl implements DogDao {
             dog.setFleaTreatment(rs.getString(9));
             dog.setInsurance(rs.getString(10));
 
-            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n", "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(), "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(), "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(), "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(), "Forsikring + policenummer: " + dog.getInsurance().trim());
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
+                    "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(),
+                    "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(),
+                    "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(),
+                    "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
+                    "Forsikring + policenummer: " + dog.getInsurance().trim());
         }
         if (!hasDogs) {
             System.out.println("Ingen hunde fundet!");
