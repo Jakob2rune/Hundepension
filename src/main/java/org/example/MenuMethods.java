@@ -1,4 +1,6 @@
 package org.example;
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
 
 public class MenuMethods {
@@ -43,7 +45,7 @@ public class MenuMethods {
         daoAll.readAllDogOwners();
         System.out.println("You are now back in the Owner section.");
     }
-    public void SeeASingleDogOwnerMethod() throws Exception{
+    public void SeeSingleDogOwnerMethod() throws Exception{
         System.out.println("Please Type the ID of the owner you want to look up");
         DogOwnerDao daoSingle = new DogOwnerDaoImpl();
         String id = input.next();
@@ -51,12 +53,9 @@ public class MenuMethods {
         daoSingle.dogsForDogOwners(id);
         System.out.println("You are now back in the Owner section.");
     }
-    public void ExitMethod(){}
-    public void CreateDogMethod() throws Exception{
-
+    public void ExitMethod(){
+        System.out.println("Return back to main interface");
+        System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
     }
-
-
-
-
 }
+

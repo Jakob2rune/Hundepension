@@ -53,7 +53,7 @@ public class Main {
 
                             case "Single", "single":
                                 MenuMethods single = new MenuMethods();
-                                single.SeeASingleDogOwnerMethod();
+                                single.SeeSingleDogOwnerMethod();
                                 break;
 
                             case "Exit", "exit":

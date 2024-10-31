@@ -70,6 +70,11 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         boolean hasDogOwners = false;
+        System.out.println(String.format(
+                "%-10s %-20s %-30s %-15s",
+                "Owner ID", "Owner Name", "Address", "Phone Number"
+        ));
+        System.out.println("--------------------------------------------------------------------------");
         while (rs.next()) {
             hasDogOwners = true;
             DogOwner dogOwner = new DogOwner();
@@ -77,18 +82,13 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
             dogOwner.setName(rs.getString(2));
             dogOwner.setAddress(rs.getString(3));
             dogOwner.setPhonenumber(rs.getString(4));
-            System.out.println(String.format(
-                    "%-10s %-20s %-30s %-15s",
-                    "Owner ID", "Owner Name", "Address", "Phone Number"
-            ));
-            System.out.println("--------------------------------------------------------------------------");
-            System.out.println(String.format(
-                    "%-10d %-20s %-30s %-15s",
-                    dogOwner.getownerID(),
-                    dogOwner.getName().trim(),
-                    dogOwner.getAddress().trim(),
-                    dogOwner.getPhonenumber().trim()
-            ));
+                System.out.println(String.format(
+                        "%-10d %-20s %-30s %-15s",
+                        dogOwner.getownerID(),
+                        dogOwner.getName().trim(),
+                        dogOwner.getAddress().trim(),
+                        dogOwner.getPhonenumber().trim()
+                ));
         }
         if (!hasDogOwners) {
             System.out.println("No dogowners found.");
@@ -112,16 +112,29 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
 
     @Override
     public void dogsForDogOwners(String no) throws Exception {
-        String sql = "SELECT fldNavn FROM tblHund WHERE fldejerID = ?";
+        String sql = "SELECT fldHundeID, fldNavn, fldRace FROM tblHund WHERE fldEjerID = ?";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, no);
         ResultSet rs = pstmt.executeQuery();
         boolean hasDogOwners = false;
+        System.out.println("\nThe following dog(s) belong to this owner:");
+        System.out.println(String.format(
+                "%-10s %-20s %-30s",
+                "Dog ID", "Dog Name", "Race"
+        ));
+        System.out.println("---------------------------------------------");
         while (rs.next()) {
             hasDogOwners = true;
-            String dogName = rs.getString(1);
-            System.out.println("This owner has a dog named: " + dogName);
+            String dogID = rs.getString(1);
+            String dogName = rs.getString(2);
+            String race = rs.getString(3);
+            System.out.println(String.format(
+                    "%-10s %-20s %-30s",
+                    dogID,
+                    dogName.trim(),
+                    race.trim()
+            ));
         }
 
         if (!hasDogOwners) {
