@@ -158,11 +158,23 @@ public class Dog {
         System.out.println("Is the dog vaccinated? Type yes or no: ");
         String vaccinated = input.nextLine();
 
-        System.out.println("Has the dog has a fleat treatment? Type yes or no: ");
+        System.out.println("Has the dog has a flea treatment? Type yes or no: ");
         String fleaTreatment = input.nextLine();
 
         System.out.println("What's the dog's insurance company and policy number?: ");
         String insuranceCompany = input.nextLine();
+
+        System.out.println("\n Dog Information Summary:");
+        System.out.println("Dog ID: " + dogID);
+        System.out.println("Owner ID: " + ownerID);
+        System.out.println("Dog's Name: " + dogName);
+        System.out.println("Birthdate: " + birthdate);
+        System.out.println("Breed: " + breed);
+        System.out.println("Special Needs: " + specialNeeds);
+        System.out.println("Preferred Vet: " + preferredVet);
+        System.out.println("Vaccinated: " + vaccinated);
+        System.out.println("Flea Treatment: " + fleaTreatment);
+        System.out.println("Insurance Company and Policy: " + insuranceCompany);
 
         return new Dog(dogID, ownerID, dogName, birthdate, breed, specialNeeds, preferredVet, vaccinated, fleaTreatment, insuranceCompany);
     }

@@ -28,7 +28,7 @@ public class DogDaoImpl implements DogDao {
      */
     @Override
     public void createDog(Dog dog) throws Exception {
-        String sql = "INSERT INTO tblHund (fldHundeId, fldEjerId, fldNavn, fldFoedselsdag, fldRace, fldSaerligeBehov, fldDyrelaege, fldVaccination, fldLoppeBehandling, fldPoliceOgSelskab) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tblHund (fldHundeID, fldEjerID, fldNavn, fldFoedselsdag, fldRace, fldSaerligeBehov, fldDyrelæge, fldVaccination, fldLoppeBehandling, fldPoliceOgSelskab) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1, dog.getDogId());
@@ -49,23 +49,29 @@ public class DogDaoImpl implements DogDao {
         }
     }
 
-    /*@Override
+    /**
+     * Makes sure that the user can read all the records for a specific dog from the database using the dog's IDNo.
+     * @param no
+     * @throws Exception if a database connection or SQL operation fails.
+     */
+    @Override
     public void readDog(String no) throws Exception{
-        String sql = "SELECT * FROM tblHund WHERE fldHundeId = ?";
+        String sql = "SELECT * FROM tblHund WHERE fldHundeID = ?";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, no);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
             Dog dog = new Dog();
-            dog.setDogId(rs.getString(1)); //- Hvilke koder skal vi have?
-            dog.setDogName(rs.getString(2));
-            dog.setOwnerId(rs.getString(3));
-            System.out.println(dog.getDogId() + " "+ dog.getDogName()+ " "+ dog.getOwnerId());
+            dog.setDogId(rs.getInt(1));
+            dog.setOwnerId(rs.getInt(2));
+            dog.setDogName(rs.getString(3));
+
+            System.out.println(dog.getDogId() + " " +  dog.getOwnerId() + " " + dog.getDogName() + " ");
         } else {
             System.out.println("No dog found with ID: " + no);
         }
-    } */
+    }
 
     /**
      * Makes sure that the user can read all records for all dogs from the database.
@@ -73,7 +79,7 @@ public class DogDaoImpl implements DogDao {
      */
     @Override
     public void readAllDogs() throws Exception{
-        String sql = "SELECT fldHundeId, fldEjerId, fldNavn, fldFoedselsdag, fldRace, fldSaerligeBehov, fldDyrelaege, fldVaccination, fldLoppeBehandling, fldPoliceOgSelskab FROM tblHund";
+        String sql = "SELECT fldHundeID, fldEjerID, fldNavn, fldFoedselsdag, fldRace, fldSaerligeBehov, fldDyrelæge, fldVaccination, fldLoppeBehandling, fldPoliceOgSelskab FROM tblHund";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();

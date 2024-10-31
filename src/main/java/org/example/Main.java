@@ -80,13 +80,18 @@ public class Main {
                             Dog dog = Dog.createDogFromScanner(input); //Uses the method from the Dog class to
                             DogDao daoCreate = new DogDaoImpl();
                             daoCreate.createDog(dog);
+                            daoCreate.readAllDogs();
                             break;
 
                         case "All","all":
-                            System.out.println("Do you want to see all info on the dogs?: ");
+                            System.out.println("Here are all the records on all dogs: ");
                             DogDao daoReadAll = new DogDaoImpl();
                             daoReadAll.readAllDogs();
-                            continue mainMenuLoop;
+                            break;
+
+                        case "Read","read":
+                            System.out.println("What dog do you want to see specifics on? Type in the dog's ID: ");
+
 
                         case "Delete", "delete":
                             System.out.println("insert Code to Delete a dog");
