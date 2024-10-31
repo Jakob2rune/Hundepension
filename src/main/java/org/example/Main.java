@@ -22,19 +22,19 @@ public class Main {
         System.out.println("Connecting to server.");
         Connection conn = getConnection();
         Scanner input = new Scanner(System.in);
+        MenuMethods menu = new MenuMethods();
         String dogfoodChosen = null;
 
-        System.out.println("Welcome to the GREATEST Dogcareprogram of all time bitch");
-        System.out.println("Where do you want to go: Owner, Dog, or Stay?");
+        menu.MainMenuPrint();
 
         mainMenuLoop:
-        while (input.hasNext()) {
-            switch (input.next()) {
-                case "Owner", "owner":
-                    System.out.println("Welcome to the Dogowner section.");
-                    System.out.println("Would you like to do CREATE, DELETE an owner, see ALL owners, see a SINGLE owner, or EXIT this section?");
+        while (input.hasNextLine()) {
+            String lowerCase = input.nextLine().toLowerCase();
+            switch (lowerCase) {
+                case "dog owner","owner","dogo":
+                    menu.DogOwnerMenuPrint();
 
-                    while (input.hasNext()) {
+                    while (true) {
                         switch (input.next()) {
                             case "Create", "create":
                                 MenuMethods create = new MenuMethods();
@@ -64,16 +64,15 @@ public class Main {
                             default:
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");
-                                System.out.println("Would you like to do Create og Delete an owner, or exit this section?");
+                                menu.DogOwnerMenuPrint();
                                 continue;
                         }
                     }
-                    break;
 
                 case "Dog", "dog":
                     System.out.println("Welcome to the Dog section.");
-                    System.out.println("Would you like to do Create, Delete a dog, setup a dogfood selection, or exit this section?");
-                    //creates a loop when the dog section is picked, and lets your create, delete and selection of dogfood.
+                    System.out.println("Would you like to do Create, Delete a dog, or exit this section?");
+                    //creates a loop when the dog section is picked, and lets your create, delete and select.
                     while (input.hasNext()) {
                         switch (input.next()) {
                             case "Create", "create":
@@ -82,6 +81,40 @@ public class Main {
 
                             case "Delete", "delete":
                                 System.out.println("insert Code to Delete a dog");
+                                continue mainMenuLoop;
+
+                            case "Exit", "exit":
+                                System.out.println("Return back to main interface");
+                                System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+                                continue mainMenuLoop;
+
+                            default:
+                                //Writes an "invalid choice" And lets you try again.
+                                System.out.println("Invalid choice, please try again");
+                                System.out.println("Would you like to do Create og Delete a dog?");
+                                continue;
+                        }
+                    }
+                    break;
+
+
+                case "Stay", "stay":
+                    System.out.println("Welcome to the stay section.");
+                    System.out.println("Would you like to do Create og Delete a stay, or Exit this section?");
+
+                    while (input.hasNext()) {
+                        switch (input.next()) {
+                            case "Create", "create":
+                                System.out.println("insert Code to Create a stay");
+                                continue mainMenuLoop;
+
+                            case "Delete", "delete":
+                                System.out.println("insert Code to Delete a stay");
+                                continue mainMenuLoop;
+
+                            case "Exit", "exit":
+                                System.out.println("Return back to main interface");
+                                System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
                                 continue mainMenuLoop;
 
                             case "Dogfood", "dogfood":
@@ -127,41 +160,6 @@ public class Main {
                                     }
                                 }
                                 break;
-
-                            case "Exit", "exit":
-                                System.out.println("Return back to main interface");
-                                System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                                continue mainMenuLoop;
-
-                            default:
-                                //Writes an "invalid choice" And lets you try again.
-                                System.out.println("Invalid choice, please try again");
-                                System.out.println("Would you like to do Create og Delete a dog?");
-                                continue;
-                        }
-                    }
-                    break;
-
-
-                case "Stay", "stay":
-                    System.out.println("Welcome to the stay section.");
-                    System.out.println("Would you like to do Create og Delete a stay, or Exit this section?");
-
-                    while (input.hasNext()) {
-                        switch (input.next()) {
-                            case "Create", "create":
-                                System.out.println("insert Code to Create a stay");
-                                continue mainMenuLoop;
-
-                            case "Delete", "delete":
-                                System.out.println("insert Code to Delete a stay");
-                                continue mainMenuLoop;
-
-                            case "Exit", "exit":
-                                System.out.println("Return back to main interface");
-                                System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                                continue mainMenuLoop;
-
                             default:
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");

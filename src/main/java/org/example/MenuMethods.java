@@ -1,11 +1,45 @@
 package org.example;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.Scanner;
 
 public class MenuMethods {
     Scanner input = new Scanner(System.in);
-
+    public void MainMenuPrint() {
+        System.out.println("┌────────────────────────────────────────┐");
+        System.out.println("│                (U•ᴥ•U)                 │");
+        System.out.println("│        ┌────────────────────┐          │");
+        System.out.println("│        │     Welcome to     │          │");
+        System.out.println("│        │ DogPension Manager │          │");
+        System.out.println("│        └────────────────────┘          │");
+        System.out.println("│                                        │");
+        System.out.println("│  ┌────────────┐  ┌───────┐  ┌───────┐  │");
+        System.out.println("│  │ Dog Owner  │  │  Dog  │  │  Stay │  │");
+        System.out.println("│  └────────────┘  └───────┘  └───────┘  │");
+        System.out.println("│                                        │");
+        System.out.println("│              ┌────────┐                │");
+        System.out.println("│              │  Exit  │                │");
+        System.out.println("│              └────────┘                │");
+        System.out.println("│                                        │");
+        System.out.println("└────────────────────────────────────────┘");
+        System.out.println("\nType the name of the button you want to press (Dog Owner, Dog, Stay, Exit): ");
+    }
+    public void DogOwnerMenuPrint(){
+        System.out.println("┌───────────────────────────────────────────────────────────┐");
+        System.out.println("│                                                           │");
+        System.out.println("│                 ┌────────────────────────┐                │");
+        System.out.println("│                 │   Welcome to the Dog   │                │");
+        System.out.println("│                 │     Owner Section      │                │");
+        System.out.println("│                 └────────────────────────┘                │");
+        System.out.println("│                                                           │");
+        System.out.println("│   ┌──────────┐   ┌──────────┐   ┌──────┐   ┌──────────┐   │");
+        System.out.println("│   │  CREATE  │   │  DELETE  │   │  ALL │   │  SINGLE  │   │");
+        System.out.println("│   └──────────┘   └──────────┘   └──────┘   └──────────┘   │");
+        System.out.println("│                          ┌─────────┐                      │");
+        System.out.println("│                          │  EXIT   │                      │");
+        System.out.println("│                          └─────────┘                      │");
+        System.out.println("└───────────────────────────────────────────────────────────┘");
+        System.out.println("\nType the name of the action you want to perform (Create, Delete, All, Single, Exit):");
+    }
     public void CreateOwnerMethod()throws Exception{
         System.out.println("Insert details to create a new dog owner.");
 
