@@ -43,9 +43,9 @@ public class DogDaoImpl implements DogDao {
         pstmt.setString(10, dog.getInsurance());
         int affectedRows = pstmt.executeUpdate();
         if (affectedRows > 0) {
-            System.out.println("Dog added successfully.");
+            System.out.println("Hunden er tilføjet til databasen.");
         } else {
-            System.out.println("Failed to add the dog.");
+            System.out.println("Hunden er ikke tilføjet til databasen.");
         }
     }
 
@@ -86,7 +86,7 @@ public class DogDaoImpl implements DogDao {
                     "Loppebehandling: " + dog.getFleaTreatment().trim(),
                     "Forsikring + policenummer: " + dog.getInsurance().trim());
         } else {
-            System.out.println("No dog found with ID: " + dogID);
+            System.out.println("Der er ikke fundet en hund med IDNo.: " + dogID);
         }
     }
 
@@ -128,7 +128,21 @@ public class DogDaoImpl implements DogDao {
                     "Forsikring + policenummer: " + dog.getInsurance().trim());
         }
         if (!hasDogs) {
-            System.out.println("No dogs found.");
+            System.out.println("Ingen hunde fundet!");
+        }
+    }
+
+    public void deleteDog(int dogID) throws Exception {
+        String sql = "DELETE  FROM tblHund WHERE fldHundeID = ?";
+        Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, dogID);
+        int affectedRows = pstmt.executeUpdate();
+
+        if (affectedRows > 0) {
+            System.out.println("Hunden med IDNo.:  " + dogID + " er slettet i databasen.");
+        } else {
+            System.out.println("Hunden med IDNo.:  " + dogID + " er ikke blevet slettet i databasen.");
         }
     }
 }

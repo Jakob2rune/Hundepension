@@ -69,8 +69,8 @@ public class Main {
                 break;
 
             case "Dog","dog": //Made by Louise
-                System.out.println("Welcome to the dog section.");
-                System.out.println("What would you like to do? Type: Create = create new dog, All = display all records on all dogs, read = read a specific dog: ");
+                System.out.println("Velkommen til hundesektionen.");
+                System.out.println("Hvad vil du foretage dig? Indtast: Create = Opret ny hund, All = få vist alle eksisterende hunde i databasen, Read = Se detaljer for en specifik hund, Delete = Slet en hund i databasen: ");
                 //creates a loop when the dog section is picked, and lets you create or read dogs.
                 while (input.hasNext()) {
                     interfaceDogID = input.next();
@@ -84,7 +84,7 @@ public class Main {
                             break;
 
                         case "All","all":
-                            System.out.println("Here are all the records on all dogs: ");
+                            System.out.println("Her er alle informationer på de eksisterende hunde : ");
                             DogDao daoReadAll = new DogDaoImpl();
                             daoReadAll.readAllDogs();
                             break;
@@ -98,7 +98,7 @@ public class Main {
 
                         case "Delete", "delete":
                             System.out.println("insert Code to Delete a dog");
-                            continue mainMenuLoop;
+                            break;
 
                         case "Dogfood","dogfood":
                             System.out.println("Welcome to the Dogfood section.");

@@ -132,49 +132,37 @@ public class Dog {
     }
 
     public static Dog createDogFromScanner (Scanner input) {
-        System.out.println("Insert dog ID to upload new dog (Must be a new one for each new dog created): ");
+        System.out.println("Indtast Hunde ID for at tilføje en ny hund. (Det skal være et nyt nummer for hver ny hund, der tilføjes): ");
         int dogID = input.nextInt();
         input.nextLine();
 
-        System.out.println("Insert the owners ID: ");
+        System.out.println("Indtast Ejer ID: ");
         int ownerID = input.nextInt();
         input.nextLine();
 
-        System.out.println("Insert the dog's name: ");
+        System.out.println("Indtast hundens navn: ");
         String dogName = input.nextLine();
 
-        System.out.println("Insert the birthdate of the dog (yyyy.mm.dd): ");
+        System.out.println("Indtast hundens foedselsdag (yyyy.mm.dd): ");
         String birthdate = input.nextLine();
 
-        System.out.println("Insert the breed of the dog: ");
+        System.out.println("Indtast hunderace: ");
         String breed = input.nextLine();
 
-        System.out.println("Does the dog have any special needs?: ");
+        System.out.println("Har hunden nogle saerlige behov?: ");
         String specialNeeds = input.nextLine();
 
-        System.out.println("Insert the name of the preferred vet: ");
+        System.out.println("Indtast foretrukne dyrlaege: ");
         String preferredVet = input.nextLine();
 
-        System.out.println("Is the dog vaccinated? Type yes or no: ");
+        System.out.println(" Er hunden vaccineret? Skriv ja eller nej: ");
         String vaccinated = input.nextLine();
 
-        System.out.println("Has the dog has a flea treatment? Type yes or no: ");
+        System.out.println("Har hunden fået loppebehandling? Skriv ja eller nej: ");
         String fleaTreatment = input.nextLine();
 
-        System.out.println("What's the dog's insurance company and policy number?: ");
+        System.out.println("Indtast hundens forsikringsselskab og policenummer: ");
         String insuranceCompany = input.nextLine();
-
-        System.out.println("\n Dog Information Summary:");
-        System.out.println("Dog ID: " + dogID);
-        System.out.println("Owner ID: " + ownerID);
-        System.out.println("Dog's Name: " + dogName);
-        System.out.println("Birthdate: " + birthdate);
-        System.out.println("Breed: " + breed);
-        System.out.println("Special Needs: " + specialNeeds);
-        System.out.println("Preferred Vet: " + preferredVet);
-        System.out.println("Vaccinated: " + vaccinated);
-        System.out.println("Flea Treatment: " + fleaTreatment);
-        System.out.println("Insurance Company and Policy: " + insuranceCompany);
 
         return new Dog(dogID, ownerID, dogName, birthdate, breed, specialNeeds, preferredVet, vaccinated, fleaTreatment, insuranceCompany);
     }
