@@ -77,7 +77,6 @@ public class MenuMethods {
         System.out.println("All the owners in the database");
         DogOwnerDao daoAll = new DogOwnerDaoImpl();
         daoAll.readAllDogOwners();
-        System.out.println("You are now back in the Dog Owner section. Write 'Menu' to see the Dog Owner Menu again.");
     }
     public void SeeSingleDogOwnerMethod() throws Exception{
         System.out.println("Please Type the ID of the owner you want to look up");

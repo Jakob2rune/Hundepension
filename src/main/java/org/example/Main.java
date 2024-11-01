@@ -31,40 +31,41 @@ public class Main {
         while (input.hasNextLine()) {
             String lowerCase = input.nextLine().toLowerCase();
             switch (lowerCase) {
-                case "dog owner","owner","dogo":
+                case "dog owner","owner","dogowner":
                     menu.DogOwnerMenuPrint();
+                    MenuMethods OwnerMenu = new MenuMethods();
 
                     while (true) {
-                        switch (input.next()) {
-                            case "Create", "create":
-                                MenuMethods create = new MenuMethods();
-                                create.CreateOwnerMethod();
+                        switch (input.nextLine().toLowerCase()) {
+                            case "create":
+                                OwnerMenu.SeeAllOwnersMethod();
+                                OwnerMenu.CreateOwnerMethod();
                                 break;
 
-                            case "Delete", "delete":
-                                    MenuMethods delete = new MenuMethods();
-                                    delete.DeleteOwnerMethod();
+                            case "delete":
+                                OwnerMenu.DeleteOwnerMethod();
                                 break;
 
-                            case "All", "all":
-                                     MenuMethods all = new MenuMethods();
-                                     all.SeeAllOwnersMethod();
+                            case "all":
+                                OwnerMenu.SeeAllOwnersMethod();
+                                System.out.println("You are now back in the Dog Owner section. Write 'Menu' to see the Dog Owner Menu again.");
                                 break;
 
-                            case "Single", "single":
-                                MenuMethods single = new MenuMethods();
-                                single.SeeSingleDogOwnerMethod();
+                            case "single":
+                                OwnerMenu.SeeSingleDogOwnerMethod();
                                 break;
 
-                            case "Exit", "exit":
-                                menu.MainMenuPrint();
+                            case "exit":
+                                OwnerMenu.MainMenuPrint();
                                 continue mainMenuLoop;
+
                             case "menu":
-                                menu.DogOwnerMenuPrint();
+                                OwnerMenu.DogOwnerMenuPrint();
+
                             default:
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");
-                                menu.DogOwnerMenuPrint();
+                                OwnerMenu.DogOwnerMenuPrint();
                                 continue;
                         }
                     }
