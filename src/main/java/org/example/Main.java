@@ -82,7 +82,7 @@ public class Main {
                 System.out.println("Welcome to the dog section.");
                 System.out.println("What do you want to do?\nEnter:\n1 = Create new dog\n2 = Show all existing dogs in the system\n3 = See details for one specific dog\n4 = Delete a dog in the system\n5 = Exit and return to the main menu: ");
                 //creates a loop when the dog section is picked, and lets you create, read or delete dogs or exit the program and return to the Main menu.
-                while (input.hasNext()) {
+                while (input.hasNextLine()) {
                     switch (input.nextLine()) {
                         case "1": //Uses the user inputs for the parameters and creates a new dog in the database using the Dog constructor.
                             Dog dog = Dog.createDogFromScanner(input);//Calls the method from the Dog class.
@@ -121,7 +121,6 @@ public class Main {
                         case "5":
                             System.out.println("You will now return to the main menu.");
                             menu.MainMenuPrint();
-                            //System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
                             continue mainMenuLoop; //Lets the user back to the Main menu to either start anew or exit the program completely.
 
                         default:
