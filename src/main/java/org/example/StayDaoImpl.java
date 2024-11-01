@@ -19,19 +19,19 @@ public class StayDaoImpl implements StayDao {
 
     @Override
     public void createStay(Stay stay) throws Exception {
-        String sql = "INSERT INTO tblOphold VALUES (?, ?, ?)";
+        String sql = "INSERT INTO tblOphold VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, stay.stayID()); //- Find metoder!!
-        pstmt.setInt(2, stay.dogID());
-        pstmt.setString(3, stay.startDate());
-        pstmt.setString(3, stay.endDate());
-        pstmt.setInt(3, stay.amountOfStayDays());
-        pstmt.setInt(3, stay.foodFrequencyPerDay());
-        pstmt.setInt(3, stay.FoodID());
-        pstmt.setInt(3, stay.walkFrequencyPerDay());
-        pstmt.setFloat(3, stay.startKmPerDay());
-        pstmt.setFloat(3, stay.foodStartAmountGram());
+        pstmt.setInt(1, stay.getStayID()); //- Find metoder!!
+        pstmt.setInt(2, stay.getDogID());
+        pstmt.setString(3, stay.getStartDate());
+        pstmt.setString(3, stay.getEndDate());
+        pstmt.setInt(3, stay.getAmountOfStayDays());
+        pstmt.setInt(3, stay.getFoodFrequencyPerDay());
+        pstmt.setInt(3, stay.getFoodID());
+        pstmt.setInt(3, stay.getWalkFrequencyPerDay());
+        pstmt.setFloat(3, stay.getStartKmPerDay());
+        pstmt.setFloat(3, stay.getFoodFrequencyPerDay());
         int affectedRows = pstmt.executeUpdate();
         if (affectedRows > 0) {
             System.out.println("Stay added successfully.");
@@ -39,7 +39,7 @@ public class StayDaoImpl implements StayDao {
             System.out.println("Failed to add the stay.");
         }
     }
-    /*
+
     @Override
     public void readStay(String no) throws Exception {
         String sql = "SELECT * FROM tblOphold WHERE dept_no = ?"; //Hvilke attributter?
@@ -47,12 +47,21 @@ public class StayDaoImpl implements StayDao {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, no);
         ResultSet rs = pstmt.executeQuery();
+        Stay stay = new Stay();
         if (rs.next()) {
-            Stay stay = new Stay();
-            stay.setNo(rs.getString(1));
-            stay.setName(rs.getString(2));
-            stay.setLocation(rs.getString(3));
-            System.out.println(stay.getNo() + " " + stay.getName() + " " + stay.getLocation());
+
+            stay.setStayID(rs.getInt(1));
+            stay.setAmountOfStayDays(rs.getInt(2));
+            stay.setStartKmPerDay(rs.getInt(3));
+            stay.setAmountOfStayDays(rs.getInt(4));
+            stay.setFoodFrequencyPerDay(rs.getInt(5));
+            stay.setFoodID(rs.getInt(6));
+            stay.setWalkFrequencyPerDay(rs.getInt(7));
+            stay.setStartDate(rs.getString(8));
+            stay.setEndDate(rs.getString(9));
+            stay.setDogID(rs.getInt(10));
+
+            System.out.println( stay.getAmountOfStayDays  ()+ stay.getFoodFrequencyPerDay()+ stay.getFoodStartAmountGram()+ stay.getStartKmPerDay()+ stay.getDogID() + stay.getEndDate() + stay.getEndDate() + stay.getStayID() + stay.getWalkFrequencyPerDay() + stay.getFoodID());
         } else {
             System.out.println("No stay found with ID: " + no);
         }
@@ -78,4 +87,3 @@ public class StayDaoImpl implements StayDao {
             System.out.println("No stays found.");
         }
     }*/
-}

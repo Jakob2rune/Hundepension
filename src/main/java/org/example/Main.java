@@ -129,13 +129,18 @@ public class Main {
                     System.out.println("Would you like to do Create og Delete a stay, or Exit this section?");
 
                     while (input.hasNext()) {
-                        switch (input.next()) {
+                        switch (input.nextLine()) {
                             case "Create", "create":
-                                System.out.println("insert Code to Create a stay");
-                                continue mainMenuLoop;
+                                System.out.println("Stay Information:");
+                                System.out.println("Amount of stay days");
+                                System.out.println("Start km per day");
+                                System.out.println("Food frequency per day");
+                                System.out.println("Walk frequency per day:");
+                                System.out.println("Start date:");
+
+
 
                             case "Delete", "delete":
-                                System.out.println("insert Code to Delete a stay");
                                 continue mainMenuLoop;
 
                             case "Exit", "exit":

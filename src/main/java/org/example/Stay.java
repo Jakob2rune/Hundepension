@@ -14,7 +14,8 @@ package org.example;
         private int walkFrequencyPerDay;
         private int startKmPerDay;
 
-
+        public Stay ()
+        {}
         public Stay(int stayID, int dogID, String startDate, String endDate, int amountOfStayDays,
                     int foodFrequencyPerDay, int foodID, int foodStartAmountGram,
                     int walkFrequencyPerDay, int startKmPerDay) {
