@@ -48,9 +48,9 @@ public class DogDaoImpl implements DogDao {
         pstmt.setString(10, dog.getInsurance());
         int affectedRows = pstmt.executeUpdate();
         if (affectedRows > 0) {
-            System.out.println("Hunden er tilføjet til databasen.");
+            System.out.println("The dog is added to the system.");
         } else {
-            System.out.println("Hunden er ikke tilføjet til databasen.");
+            System.out.println("The dog hasn't been added to the system.");
         }
     }
 
@@ -81,47 +81,15 @@ public class DogDaoImpl implements DogDao {
 
             //Formatting the output to give a better overview of the tables and attributes from the database.
             System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
-                    "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(),
-                    "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(),
-                    "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(),
-                    "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
-                    "Forsikring + policenummer: " + dog.getInsurance().trim());
+                    "Dog ID: " + dog.getDogId(), "Owner ID: " + dog.getOwnerId(), "Name: " + dog.getDogName().trim(),
+                    "Birthdate: " + dog.getBirthDate().trim(), "Breed: " + dog.getBreed().trim(),
+                    "Special needs: " + dog.getSpecialNeeds().trim(), "Preferred vet: " + dog.getVet().trim(),
+                    "Vaccinated: " + dog.getVaccination().trim(), "Flea treatment: " + dog.getFleaTreatment().trim(),
+                    "Insurance company + policy number: " + dog.getInsurance().trim());
         } else {
-            System.out.println("Der er ikke fundet en hund med ID Nr.: " + dogID);
+            System.out.println("No dog with that ID has been found: " + dogID);
         }
     }
-
-   /* @Override
-    public void readDogID(int dogID) throws Exception{
-        String sql = "SELECT fldHundeID, fldNavn FROM tblHund";
-        Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, dogID);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            Dog dog = new Dog();
-            dog.setDogId(rs.getInt(1));
-            dog.setOwnerId(rs.getInt(2));
-            dog.setDogName(rs.getString(3));
-            dog.setBirthDate(rs.getString(4));
-            dog.setBreed(rs.getString(5));
-            dog.setSpecialNeeds(rs.getString(6));
-            dog.setVet(rs.getString(7));
-            dog.setVaccination(rs.getString(8));
-            dog.setFleaTreatment(rs.getString(9));
-            dog.setInsurance(rs.getString(10));
-
-            //Formatting the output to give a better overview of the tables and attributes from the database.
-            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
-                    "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(),
-                    "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(),
-                    "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(),
-                    "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
-                    "Forsikring + policenummer: " + dog.getInsurance().trim());
-        } else {
-            System.out.println("Der er ikke fundet en hund med IDNo.: " + dogID);
-        }
-    }*/
 
     /**
      * Makes sure that the user can read all records for all dogs from the database.
@@ -149,14 +117,14 @@ public class DogDaoImpl implements DogDao {
             dog.setInsurance(rs.getString(10));
 
             System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
-                    "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(),
-                    "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(),
-                    "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(),
-                    "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
-                    "Forsikring + policenummer: " + dog.getInsurance().trim());
+                    "Dog ID: " + dog.getDogId(), "Owner ID: " + dog.getOwnerId(), "Name: " + dog.getDogName().trim(),
+                    "Birthdate: " + dog.getBirthDate().trim(), "Breed: " + dog.getBreed().trim(),
+                    "Special needs: " + dog.getSpecialNeeds().trim(), "Preferred vet: " + dog.getVet().trim(),
+                    "Vaccinated: " + dog.getVaccination().trim(), "Flea treatment: " + dog.getFleaTreatment().trim(),
+                    "Insurance company + policy number: " + dog.getInsurance().trim());
         }
         if (!hasDogs) {
-            System.out.println("Ingen hunde fundet!");
+            System.out.println("No dogs found.");
         }
     }
 
@@ -168,9 +136,9 @@ public class DogDaoImpl implements DogDao {
         int affectedRows = pstmt.executeUpdate();
 
         if (affectedRows > 0) {
-            System.out.println("Hunden med IDNo.:  " + dogID + " er slettet i databasen.");
+            System.out.println("The dog with ID No.:  " + dogID + " has been deleted from the system.");
         } else {
-            System.out.println("Hunden med IDNo.:  " + dogID + " er ikke blevet slettet i databasen.");
+            System.out.println("The dog with ID No.:  " + dogID + " has not been deleted from the system.");
         }
     }
 }
