@@ -21,7 +21,7 @@ public class MenuMethods {
         System.out.println("│              └────────┘                │");
         System.out.println("│                                        │");
         System.out.println("└────────────────────────────────────────┘");
-        System.out.println("\nType the name of the button you want to press (Dog Owner, Dog, Stay, Exit): ");
+        System.out.println("Type the name of the button you want to press (Dog Owner, Dog, Stay, Exit): ");
     }
     public void DogOwnerMenuPrint(){
         System.out.println("┌───────────────────────────────────────────────────────────┐");
@@ -34,11 +34,11 @@ public class MenuMethods {
         System.out.println("│   ┌──────────┐   ┌──────────┐   ┌──────┐   ┌──────────┐   │");
         System.out.println("│   │  CREATE  │   │  DELETE  │   │  ALL │   │  SINGLE  │   │");
         System.out.println("│   └──────────┘   └──────────┘   └──────┘   └──────────┘   │");
-        System.out.println("│                          ┌─────────┐                      │");
-        System.out.println("│                          │  EXIT   │                      │");
-        System.out.println("│                          └─────────┘                      │");
+        System.out.println("│                        ┌─────────┐                        │");
+        System.out.println("│                        │  EXIT   │                        │");
+        System.out.println("│                        └─────────┘                        │");
         System.out.println("└───────────────────────────────────────────────────────────┘");
-        System.out.println("\nType the name of the action you want to perform (Create, Delete, All, Single, Exit):");
+        System.out.println("Type the name of the action you want to perform (Create, Delete, All, Single, Exit):");
     }
     public void CreateOwnerMethod()throws Exception{
         System.out.println("Insert details to create a new dog owner.");
