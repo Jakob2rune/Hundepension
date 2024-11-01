@@ -22,19 +22,19 @@ public class Main {
         System.out.println("Connecting to server.");
         Connection conn = getConnection();
         Scanner input = new Scanner(System.in);
+        MenuMethods menu = new MenuMethods();
         String dogfoodChosen = null;
 
-        System.out.println("Velkommen til Rosa's hundepension");
-        System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
+        menu.MainMenuPrint();
 
         mainMenuLoop:
-        while (input.hasNext()) {
-            switch (input.next()) {
-                case "Owner", "owner":
-                    System.out.println("Welcome to the Dogowner section.");
-                    System.out.println("Would you like to do CREATE, DELETE an owner, see ALL owners, see a SINGLE owner, or EXIT this section?");
+        while (input.hasNextLine()) {
+            String lowerCase = input.nextLine().toLowerCase();
+            switch (lowerCase) {
+                case "dog owner","owner","dogo":
+                    menu.DogOwnerMenuPrint();
 
-                    while (input.hasNext()) {
+                    while (true) {
                         switch (input.next()) {
                             case "Create", "create":
                                 MenuMethods create = new MenuMethods();
@@ -57,18 +57,17 @@ public class Main {
                                 break;
 
                             case "Exit", "exit":
-                                MenuMethods exit = new MenuMethods();
-                                exit.ExitMethod();
+                                menu.MainMenuPrint();
                                 continue mainMenuLoop;
-
+                            case "menu":
+                                menu.DogOwnerMenuPrint();
                             default:
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");
-                                System.out.println("Would you like to do Create og Delete an owner, or exit this section?");
+                                menu.DogOwnerMenuPrint();
                                 continue;
                         }
                     }
-                    break;
 
             case "Hund","hund": //Made by Louise
                 System.out.println("Velkommen til hundesektionen.");
@@ -115,59 +114,14 @@ public class Main {
                             System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
                             continue mainMenuLoop; //Lets the user back to the Main menu to either start anew or exit the program completely.
 
-                        /*case "Dogfood","dogfood":
-                            System.out.println("Welcome to the Dogfood section.");
-                            System.out.println("What would kind of dogfood would you like to chose?");
-                            System.out.println("Standard tørfoder[1]\nTørfoder til unge hunde[2]\nTørfoder til gamle hunde[3]\nLuksusfoder[4]\nDiæt foder[5]");
-                            System.out.println("Or type exit to exit this section");
-                            //creates a loop for picking a type of dogfood inside the "Dog" section,
-                            while (input.hasNext()) {
-                                interfaceDogfoodID = input.next();
-                                switch (interfaceDogfoodID) {
-                                    case "1":
-                                        dogfoodChosen = "Standard tørfoder";
-                                        System.out.println("You have chosen " + dogfoodChosen);
-                                        continue mainMenuLoop;
-                                    case "2":
-                                        dogfoodChosen = "Tørfoder til unge hunde";
-                                        System.out.println("You have chosen " + dogfoodChosen);
-                                        continue mainMenuLoop;
-                                    case "3":
-                                        dogfoodChosen = "Tørfoder til gamle hunde";
-                                        System.out.println("You have chosen " + dogfoodChosen);
-                                        continue mainMenuLoop;
-                                    case "4":
-                                        dogfoodChosen = "Luksusfoder";
-                                        System.out.println("You have chosen " + dogfoodChosen);
-                                        continue mainMenuLoop;
-                                    case "5":
-                                        dogfoodChosen = "Diæt foder";
-                                        System.out.println("You have chosen " + dogfoodChosen);
-                                        continue mainMenuLoop;
-
-                                        case "Exit", "exit":
-                                            System.out.println("Return back to main interface");
-                                            System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                                            continue mainMenuLoop;
-
-                                    default:
-                                        //Writes an "invalid choice" And lets you try again.
-                                        System.out.println("Invalid choice, please try again");
-                                        System.out.println("Standard tørfoder[1]\nTørfoder til unge hunde[2]\nTørfoder til gamle hunde[3]\nLuksusfoder[4]\nDiæt foder[5]");
-                                        System.out.println("Or type exit to exit this section");
-                                        continue;
-                                }
-                            }
-                            break;*/
-
                         default:
                             //If an invalid choice is typed in the porgram warns you and lets you try again.
                             System.out.println("Ikke gyldig indtasning. Prøv igen");
                             System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                             continue;
+                        }
                     }
-                }
-                break;
+                    break;
 
 
                 case "Stay", "stay":
@@ -188,6 +142,46 @@ public class Main {
                                 System.out.println("Return back to main interface");
                                 System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
                                 continue mainMenuLoop;
+
+                            case "Dogfood", "dogfood":
+                                System.out.println("Welcome to the Dogfood section.");
+                                System.out.println("What would kind of dogfood would you like to chose?");
+                                System.out.println("Standard tørfoder[1]\nTørfoder til unge hunde[2]\nTørfoder til gamle hunde[3]\nLuksusfoder[4]\nDiæt foder[5]");
+                                System.out.println("Or type exit to exit this section");
+                                //creates a loop for picking a type of dogfood inside the "Dog" section,
+                                while (input.hasNext()) {
+                                    switch (input.next()) {
+                                        case "1":
+                                            dogfoodChosen = "Standard tørfoder";
+                                            System.out.println("You have chosen " + dogfoodChosen);
+                                            continue mainMenuLoop;
+                                        case "2":
+                                            dogfoodChosen = "Tørfoder til unge hunde";
+                                            System.out.println("You have chosen " + dogfoodChosen);
+                                            continue mainMenuLoop;
+                                        case "3":
+                                            dogfoodChosen = "Tørfoder til gamle hunde";
+                                            System.out.println("You have chosen " + dogfoodChosen);
+                                            continue mainMenuLoop;
+                                        case "4":
+                                            dogfoodChosen = "Luksusfoder";
+                                            System.out.println("You have chosen " + dogfoodChosen);
+                                            continue mainMenuLoop;
+                                        case "5":
+                                            dogfoodChosen = "Diæt foder";
+                                            System.out.println("You have chosen " + dogfoodChosen);
+                                            continue mainMenuLoop;
+
+                                        case "Exit", "exit":
+                                            System.out.println("Return back to main interface");
+                                            System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+                                            continue mainMenuLoop;
+
+                                        default:
+                                            //Writes an "invalid choice" And lets you try again.
+                                            System.out.println("Invalid choice, please try again");
+                                            System.out.println("Standard tørfoder[1]\nTørfoder til unge hunde[2]\nTørfoder til gamle hunde[3]\nLuksusfoder[4]\nDiæt foder[5]");
+                                            System.out.println("Or type exit to exit this section");
 
                             default:
                                 //Writes an "invalid choice" And lets you try again.
