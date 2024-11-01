@@ -4,12 +4,12 @@ import java.sql.DriverManager;
 import java.util.Scanner;
 
 public class Main {
-
+    //initializes variables for the getConnection method.
     private static final String URL = "jdbc:sqlserver://localhost;portNumber=1433;databaseName=DBHundepension";
     private static final String USERNAME = "sa"; // replace with your username
     private static final String PASSWORD = "admin"; // replace with your password
 
-
+    //connects us to the SQL server named DBHundepension
     public static Connection getConnection() throws Exception {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -19,24 +19,32 @@ public class Main {
 
 
     public static void main(String args[]) throws Exception {
+        //Connects us to the SQL server, when we start the program.
         System.out.println("Connecting to server.");
         Connection conn = getConnection();
         Scanner input = new Scanner(System.in);
         MenuMethods menu = new MenuMethods();
         String dogfoodChosen = null;
-
+        //prints the main menu in the console. This method are in the MenuMethods class, with the othe methods used in main.
         menu.MainMenuPrint();
-
+        //creates out main loop, and gives it the name mainMenuLoop.
         mainMenuLoop:
         while (input.hasNextLine()) {
+            //takes an input that is a string, that can have spaces, and converts the input to all lowercase.
             String lowerCase = input.nextLine().toLowerCase();
+            //we create a Switch Case, for our mainMenuloop.
             switch (lowerCase) {
+                // The cases are called "dog owner", "dog", "stay", "exit" and default.
                 case "dog owner","owner","dogowner":
+                    //Prints our DogOwnerMenu. The method is in MenuMethods class.
                     menu.DogOwnerMenuPrint();
+                    //creates a MenuMethods object with the name of OwnerMenu, for late use.
                     MenuMethods OwnerMenu = new MenuMethods();
 
                     while (true) {
+                        //creates our Owner Section Loop, also with a Switch Case.
                         switch (input.nextLine().toLowerCase()) {
+                            //we use the object OwnerMenu(the name), so that we are able to use the other methods from MenuMethods.
                             case "create":
                                 OwnerMenu.SeeAllOwnersMethod();
                                 OwnerMenu.CreateOwnerMethod();
@@ -66,7 +74,7 @@ public class Main {
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");
                                 OwnerMenu.DogOwnerMenuPrint();
-                                continue;
+                                continue; //is obsolete, but I like it :-)
                         }
                     }
 
