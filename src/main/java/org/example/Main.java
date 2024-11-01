@@ -57,10 +57,10 @@ public class Main {
                                 break;
 
                             case "Exit", "exit":
-                                MenuMethods exit = new MenuMethods();
-                                exit.ExitMethod();
+                                menu.MainMenuPrint();
                                 continue mainMenuLoop;
-
+                            case "menu":
+                                menu.DogOwnerMenuPrint();
                             default:
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");

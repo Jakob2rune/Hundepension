@@ -64,20 +64,20 @@ public class MenuMethods {
         daoCreate.createDogOwner(dogOwner);
         daoCreate.readAllDogOwners();
 
-        System.out.println("You are now back in the Owner section.");
+        System.out.println("You are now back in the Dog Owner section. Write 'Menu' to see the Dog Owner Menu again.");
     }
     public void DeleteOwnerMethod() throws Exception{
 
         System.out.println("Please Type the ID of the owner you want to delete");
         DogOwnerDao daoDelete = new DogOwnerDaoImpl();
         daoDelete.deleteDogOwner(input.next());
-        System.out.println("You are now back in the Owner section.");
+        System.out.println("You are now back in the Dog Owner section. Write 'Menu' to see the Dog Owner Menu again.");
     }
     public void SeeAllOwnersMethod() throws Exception{
         System.out.println("All the owners in the database");
         DogOwnerDao daoAll = new DogOwnerDaoImpl();
         daoAll.readAllDogOwners();
-        System.out.println("You are now back in the Owner section.");
+        System.out.println("You are now back in the Dog Owner section. Write 'Menu' to see the Dog Owner Menu again.");
     }
     public void SeeSingleDogOwnerMethod() throws Exception{
         System.out.println("Please Type the ID of the owner you want to look up");
@@ -85,11 +85,7 @@ public class MenuMethods {
         String id = input.next();
         daoSingle.readDogOwner(id);
         daoSingle.dogsForDogOwners(id);
-        System.out.println("You are now back in the Owner section.");
-    }
-    public void ExitMethod(){
-        System.out.println("Return back to main interface");
-        System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+        System.out.println("You are now back in the Dog Owner section. Write 'Menu' to see the Dog Owner Menu again.");
     }
 }
 
