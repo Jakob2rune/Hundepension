@@ -75,8 +75,7 @@ public class Main {
                 System.out.println("Hvad vil du foretage dig?\nIndtast:\n1 = Opret ny hund\n2 = Få vist alle eksisterende hunde i systemet\n3 = Se detaljer for en specifik hund\n4 = Slet en hund i systemet\n5 = Exit og vend tilbage til hovedmenuen: ");
                 //creates a loop when the dog section is picked, and lets you create, read or delete dogs or exit the program and return to the Main menu.
                 while (input.hasNext()) {
-                    interfaceDogID = input.next();
-                    switch (interfaceDogID) {
+                    switch (input.next()) {
                         case "1": //Uses the user inputs for the parameters and creates a new dog in the database using the Dog constructor.
                             Dog dog = Dog.createDogFromScanner(input); //Calls the method from the Dog class.
                             if (dog != null) { //Checks to see if we have the correct requirements for the dog to stay at the pension - Vaccination and flea treatment.
