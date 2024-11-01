@@ -182,7 +182,8 @@ public class Main {
                                             System.out.println("Invalid choice, please try again");
                                             System.out.println("Standard tørfoder[1]\nTørfoder til unge hunde[2]\nTørfoder til gamle hunde[3]\nLuksusfoder[4]\nDiæt foder[5]");
                                             System.out.println("Or type exit to exit this section");
-
+                                    }
+                                }
                             default:
                                 //Writes an "invalid choice" And lets you try again.
                                 System.out.println("Invalid choice, please try again");
