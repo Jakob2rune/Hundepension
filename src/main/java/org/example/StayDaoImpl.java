@@ -22,9 +22,16 @@ public class StayDaoImpl implements StayDao {
         String sql = "INSERT INTO tblOphold VALUES (?, ?, ?)";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, stay.getNo()); //- Find metoder!!
-        pstmt.setString(2, stay.getName());
-        pstmt.setString(3, stay.getLocation());
+        pstmt.setInt(1, stay.stayID()); //- Find metoder!!
+        pstmt.setInt(2, stay.dogID());
+        pstmt.setString(3, stay.startDate());
+        pstmt.setString(3, stay.endDate());
+        pstmt.setInt(3, stay.amountOfStayDays());
+        pstmt.setInt(3, stay.foodFrequencyPerDay());
+        pstmt.setInt(3, stay.FoodID());
+        pstmt.setInt(3, stay.walkFrequencyPerDay());
+        pstmt.setFloat(3, stay.startKmPerDay());
+        pstmt.setFloat(3, stay.foodStartAmountGram());
         int affectedRows = pstmt.executeUpdate();
         if (affectedRows > 0) {
             System.out.println("Stay added successfully.");
@@ -32,9 +39,9 @@ public class StayDaoImpl implements StayDao {
             System.out.println("Failed to add the stay.");
         }
     }
-
+    /*
     @Override
-    public void readStay(String no) throws Exception{
+    public void readStay(String no) throws Exception {
         String sql = "SELECT * FROM tblOphold WHERE dept_no = ?"; //Hvilke attributter?
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -45,13 +52,14 @@ public class StayDaoImpl implements StayDao {
             stay.setNo(rs.getString(1));
             stay.setName(rs.getString(2));
             stay.setLocation(rs.getString(3));
-            System.out.println(stay.getNo() + " "+ stay.getName()+ " "+ stay.getLocation());
+            System.out.println(stay.getNo() + " " + stay.getName() + " " + stay.getLocation());
         } else {
             System.out.println("No stay found with ID: " + no);
         }
     }
-
-    @Override
+}
+/*
+   @Override
     public void readAllStays() throws Exception{
         String sql = "SELECT * FROM tblOphold";
         Connection conn = getConnection();
@@ -69,6 +77,5 @@ public class StayDaoImpl implements StayDao {
         if (!hasStays) {
             System.out.println("No stays found.");
         }
-    }
+    }*/
 }
-
