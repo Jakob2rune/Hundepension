@@ -4,11 +4,11 @@ package org.example;
 import java.sql.*;
 
 public class DogOwnerDaoImpl implements DogOwnerDao {
-
+    //initializes variables for the getConnection method.
     private static final String URL = "jdbc:sqlserver://localhost;instanceName=TH;portNumber=1433;databaseName=DBHundepension";
     private static final String USERNAME = "sa"; // replace with your username
     private static final String PASSWORD = "admin"; // replace with your password
-
+    //Connects us to the SQL server, when we start the program.
     public static Connection getConnection() throws Exception {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -17,9 +17,10 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
     }
 
     @Override
-    public void createDogOwner(DogOwner dogOwner) throws Exception {
+    public void createDogOwner(DogOwner dogOwner) throws Exception { //A method that takes values, creates an Owner in tblEjer in SQL,
+        // And Prompts if it was added to the server, or not.
         String sql = "INSERT INTO tblEjer VALUES (?, ?, ?,?)";
-        Connection conn = getConnection();
+        Connection conn = getConnection();//We Connects to SQL.
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1, dogOwner.getownerID());
         pstmt.setString(2, dogOwner.getName());
@@ -34,9 +35,10 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
     }
 
     @Override
-    public void readDogOwner(String no) throws Exception {
+    public void readDogOwner(String no) throws Exception {//A method that takes a value,
+        // Looks it up in tblEjer in SQL and prompts the result neatly.
         String sql = "SELECT * FROM tblEjer WHERE fldejerID = ?";
-        Connection conn = getConnection();
+        Connection conn = getConnection();//We Connects to SQL.
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, no);
         ResultSet rs = pstmt.executeQuery();
@@ -64,9 +66,9 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
     }
 
     @Override
-    public void readAllDogOwners() throws Exception {
+    public void readAllDogOwners() throws Exception { //A method that looks all Owners up in tblEjer in SQL and prompts the result neatly.
         String sql = "SELECT * FROM tblEjer";
-        Connection conn = getConnection();
+        Connection conn = getConnection();//We Connects to SQL.
         PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         boolean hasDogOwners = false;
@@ -96,9 +98,10 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
     }
 
     @Override
-    public void deleteDogOwner(String no) throws Exception {
+    public void deleteDogOwner(String no) throws Exception {//A method that takes values, deletes an Owner in tblEjer in SQL,
+        // And Prompts if it was deleted to the server, or not.
         String sql = "DELETE  FROM tblEjer WHERE fldejerID = ?";
-        Connection conn = getConnection();
+        Connection conn = getConnection();//We Connects to SQL.
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, no);
         int affectedRows = pstmt.executeUpdate();
@@ -111,9 +114,10 @@ public class DogOwnerDaoImpl implements DogOwnerDao {
     }
 
     @Override
-    public void dogsForDogOwners(String no) throws Exception {
+    public void dogsForDogOwners(String no) throws Exception { //A method that a values (fldEjerID),
+        // look it up in tblHund in SQL, only shows the ID, Name and Race of the dog and prompts the result neatly.
         String sql = "SELECT fldHundeID, fldNavn, fldRace FROM tblHund WHERE fldEjerID = ?";
-        Connection conn = getConnection();
+        Connection conn = getConnection(); //We Connects to SQL.
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, no);
         ResultSet rs = pstmt.executeQuery();
