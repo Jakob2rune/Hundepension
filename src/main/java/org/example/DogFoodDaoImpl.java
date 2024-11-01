@@ -1,8 +1,8 @@
-package org.example;
+/*package org.example;
 
 import java.sql.*;
 
-public class DogFoodDaoImpl implements DogFoodDao {
+/*public class DogFoodDaoImpl implements DogFoodDao {
 
     private static final String URL = "jdbc:sqlserver://localhost;instanceName=TH;portNumber=1433;databaseName=DBHundepension";
     private static final String USERNAME = "sa"; // replace with your username
@@ -17,7 +17,7 @@ public class DogFoodDaoImpl implements DogFoodDao {
     }
 
     @Override
-    public void createDogFood(DogFood dogFood) throws Exception {
+    /*public void createDogFood(DogFood dogFood) throws Exception {
         String sql = "INSERT INTO tblFoder VALUES (?, ?, ?)";
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -69,5 +69,6 @@ public class DogFoodDaoImpl implements DogFoodDao {
             System.out.println("No dog foods found.");
         }
     }
-}
+}*/
 
+*/
