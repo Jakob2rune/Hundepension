@@ -87,9 +87,41 @@ public class DogDaoImpl implements DogDao {
                     "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
                     "Forsikring + policenummer: " + dog.getInsurance().trim());
         } else {
-            System.out.println("Der er ikke fundet en hund med IDNo.: " + dogID);
+            System.out.println("Der er ikke fundet en hund med ID Nr.: " + dogID);
         }
     }
+
+   /* @Override
+    public void readDogID(int dogID) throws Exception{
+        String sql = "SELECT fldHundeID, fldNavn FROM tblHund";
+        Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setInt(1, dogID);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            Dog dog = new Dog();
+            dog.setDogId(rs.getInt(1));
+            dog.setOwnerId(rs.getInt(2));
+            dog.setDogName(rs.getString(3));
+            dog.setBirthDate(rs.getString(4));
+            dog.setBreed(rs.getString(5));
+            dog.setSpecialNeeds(rs.getString(6));
+            dog.setVet(rs.getString(7));
+            dog.setVaccination(rs.getString(8));
+            dog.setFleaTreatment(rs.getString(9));
+            dog.setInsurance(rs.getString(10));
+
+            //Formatting the output to give a better overview of the tables and attributes from the database.
+            System.out.printf("%-20s %-20s %-25s %-20s %-30s %-40s %-40s %-30s %-30s %-40s%n",
+                    "Hunde ID: " + dog.getDogId(), "Ejer ID: " + dog.getOwnerId(), "Navn: " + dog.getDogName().trim(),
+                    "Foedselsdag: " + dog.getBirthDate().trim(), "Hunderace: " + dog.getBreed().trim(),
+                    "Saerlige behov: " + dog.getSpecialNeeds().trim(), "Foretrukne dyrlaege: " + dog.getVet().trim(),
+                    "Vaccineret: " + dog.getVaccination().trim(), "Loppebehandling: " + dog.getFleaTreatment().trim(),
+                    "Forsikring + policenummer: " + dog.getInsurance().trim());
+        } else {
+            System.out.println("Der er ikke fundet en hund med IDNo.: " + dogID);
+        }
+    }*/
 
     /**
      * Makes sure that the user can read all records for all dogs from the database.
