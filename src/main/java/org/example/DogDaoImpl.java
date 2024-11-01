@@ -1,4 +1,4 @@
-package org.example;
+/*package org.example;
 
 import java.sql.*;
 
@@ -174,3 +174,5 @@ public class DogDaoImpl implements DogDao {
         }
     }
 }
+
+ */

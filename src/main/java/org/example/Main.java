@@ -1,7 +1,6 @@
 package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -15,58 +14,61 @@ public class Main {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        System.out.println("Connected to the database.");
         return conn;
     }
 
 
-    public static void main(String args []) throws Exception{
+    public static void main(String args[]) throws Exception {
         System.out.println("Connecting to server.");
         Connection conn = getConnection();
         Scanner input = new Scanner(System.in);
-        String interfaceID = null;
-        String interfaceOwnerID = null;
-        String interfaceDogID = null;
-        String interfaceDogfoodID = null;
-        String interfaceStayID = null;
-        String dogfoodChosen  = null;
+        String dogfoodChosen = null;
 
         System.out.println("Velkommen til Rosa's hundepension");
         System.out.println("Hvor ønsker du at foretage en ændring?\nIndtast:\nEjer, Hund, Foder, Ophold eller Exit for at lukke programmet.");
 
         mainMenuLoop:
         while (input.hasNext()) {
-            interfaceID = input.next();
-        switch (interfaceID){
-            case "Owner","owner":
-                System.out.println("Welcome to the dog owner section.");
-                System.out.println("Would you like to do Create og Delete an owner, or Exit this section?");
+            switch (input.next()) {
+                case "Owner", "owner":
+                    System.out.println("Welcome to the Dogowner section.");
+                    System.out.println("Would you like to do CREATE, DELETE an owner, see ALL owners, see a SINGLE owner, or EXIT this section?");
 
-                while (input.hasNext()){
-                    interfaceOwnerID = input.next();
-                    switch (interfaceOwnerID){
-                        case "Create","create":
-                            System.out.println("insert Code to Create owner");
-                            System.out.println("You are now back in the main menu.");
-                            continue mainMenuLoop;
+                    while (input.hasNext()) {
+                        switch (input.next()) {
+                            case "Create", "create":
+                                MenuMethods create = new MenuMethods();
+                                create.CreateOwnerMethod();
+                                break;
 
-                        case "Delete","delete":
-                            System.out.println("insert Code to Delete owner");
-                            continue mainMenuLoop;
+                            case "Delete", "delete":
+                                    MenuMethods delete = new MenuMethods();
+                                    delete.DeleteOwnerMethod();
+                                break;
 
-                        case "Exit","exit":
-                            System.out.println("Return back to main interface");
-                            System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                            continue mainMenuLoop;
+                            case "All", "all":
+                                     MenuMethods all = new MenuMethods();
+                                     all.SeeAllOwnersMethod();
+                                break;
 
-                        default:
-                            //Writes an "invalid choice" And lets you try again.
-                            System.out.println("Invalid choice, please try again");
-                            System.out.println("Would you like to do Create og Delete an owner, or exit this section?");
-                            continue;
+                            case "Single", "single":
+                                MenuMethods single = new MenuMethods();
+                                single.SeeSingleDogOwnerMethod();
+                                break;
+
+                            case "Exit", "exit":
+                                MenuMethods exit = new MenuMethods();
+                                exit.ExitMethod();
+                                continue mainMenuLoop;
+
+                            default:
+                                //Writes an "invalid choice" And lets you try again.
+                                System.out.println("Invalid choice, please try again");
+                                System.out.println("Would you like to do Create og Delete an owner, or exit this section?");
+                                continue;
+                        }
                     }
-                }
-                break;
+                    break;
 
             case "Hund","hund": //Made by Louise
                 System.out.println("Velkommen til hundesektionen.");
@@ -144,10 +146,10 @@ public class Main {
                                         System.out.println("You have chosen " + dogfoodChosen);
                                         continue mainMenuLoop;
 
-                                    case "Exit", "exit":
-                                        System.out.println("Return back to main interface");
-                                        System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                                        continue mainMenuLoop;
+                                        case "Exit", "exit":
+                                            System.out.println("Return back to main interface");
+                                            System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+                                            continue mainMenuLoop;
 
                                     default:
                                         //Writes an "invalid choice" And lets you try again.
@@ -169,48 +171,47 @@ public class Main {
                 break;
 
 
-            case "Stay","stay":
-                System.out.println("Welcome to the stay section.");
-                System.out.println("Would you like to do Create og Delete a stay, or Exit this section?");
+                case "Stay", "stay":
+                    System.out.println("Welcome to the stay section.");
+                    System.out.println("Would you like to do Create og Delete a stay, or Exit this section?");
 
-                while (input.hasNext()){
-                    interfaceStayID = input.next();
-                    switch (interfaceStayID){
-                        case "Create","create":
-                            System.out.println("insert Code to Create a stay");
-                            continue mainMenuLoop;
+                    while (input.hasNext()) {
+                        switch (input.next()) {
+                            case "Create", "create":
+                                System.out.println("insert Code to Create a stay");
+                                continue mainMenuLoop;
 
-                        case "Delete","delete":
-                            System.out.println("insert Code to Delete a stay");
-                            continue mainMenuLoop;
+                            case "Delete", "delete":
+                                System.out.println("insert Code to Delete a stay");
+                                continue mainMenuLoop;
 
-                        case "Exit","exit":
-                            System.out.println("Return back to main interface");
-                            System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
-                            continue mainMenuLoop;
+                            case "Exit", "exit":
+                                System.out.println("Return back to main interface");
+                                System.out.println("Where do you want to go, Owner, Dog, Dogfood, Stay?");
+                                continue mainMenuLoop;
 
-                        default:
-                            //Let  And lets you try again.
-                            System.out.println("Invalid choice, please try again");
-                            System.out.println("Would you like to do Create og Delete a stay, or exit this section?");
-                            continue;
+                            default:
+                                //Writes an "invalid choice" And lets you try again.
+                                System.out.println("Invalid choice, please try again");
+                                System.out.println("Would you like to do Create og Delete a stay, or exit this section?");
+                                continue;
+                        }
                     }
-                }
-                break;
+                    break;
 
-            case "Exit","exit":
-                System.out.println("You have choosen to close the program");
-                System.out.println("Gooodbye (U•ᴥ•U) *woof woof*");
+                case "Exit", "exit":
+                    System.out.println("You have choosen to close the program");
+                    System.out.println("Gooodbye (U•ᴥ•U) *woof woof*");
 
-                break mainMenuLoop;
+                    break mainMenuLoop;
 
 
-            default:
-                //Writes an "invalid choice" And lets you try again.
-                System.out.println("Invalid choice, please try again");
-                continue mainMenuLoop;
+                default:
+                    //Writes an "invalid choice" And lets you try again.
+                    System.out.println("Invalid choice, please try again");
+                    continue mainMenuLoop;
+            }
+
         }
-
     }
-}
 }
