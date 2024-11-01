@@ -141,67 +141,67 @@ public class Dog {
      * @return
      */
     public static Dog createDogFromScanner (Scanner input) {
-        System.out.println("Indtast Hundens ID for at tilføje en ny hund. (Det skal være et nyt nummer for hver ny hund, der tilføjes).\nIndtil videre eksisterer disse: ");
+        System.out.println("Enter a new ID to create a new dog in the system (It cannot be one that already exists): ");
         int dogID = input.nextInt();
         input.nextLine();
 
-        System.out.println("Indtast Ejerens ID Nr.: ");
+        System.out.println("Enter the ID of the owner.: ");
         int ownerID = input.nextInt();
         input.nextLine();
 
-        System.out.println("Indtast hundens navn: ");
+        System.out.println("Enter the name of the dog: ");
         String dogName = input.nextLine();
 
         String birthdate;
         while (true){
-            System.out.println("Indtast hundens foedselsdag (yyyy-mm-dd): ");
+            System.out.println("Enter the birthdate of the dog (yyyy-mm-dd): ");
             birthdate = input.nextLine();
             if (birthdate.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
                 break;
             }
             else {
-                System.out.println("Dette er ikke et gyldigt format. Du skal indtaste: yyyy-mm-dd");
+                System.out.println("This is not a valid format. You need to enter: yyyy-mm-dd");
             }
         }
 
-        System.out.println("Indtast hunderace: ");
+        System.out.println("Enter the breed: ");
         String breed = input.nextLine();
 
-        System.out.println("Har hunden nogle saerlige behov?: ");
+        System.out.println("Does the dog have any special needs?: ");
         String specialNeeds = input.nextLine();
 
-        System.out.println("Indtast foretrukne dyrlaege: ");
+        System.out.println("Enter preferred vet: ");
         String preferredVet = input.nextLine();
 
-        //Makes sure to write only "ja" or "nej" to the database and checks whether the dog has met the requirement of vaccination. If not, the user is sent back to the menu of the dog.
+        //Makes sure to write only "yes" or "no" to the database and checks whether the dog has met the requirement of vaccination. If not, the user is sent back to the menu of the dog.
         String vaccinated;
         do {
-            System.out.println("Er hunden vaccineret? Skriv ja eller nej: ");
+            System.out.println("Is the dog vaccinated? Enter yes or no: ");
             vaccinated = input.nextLine();
-            if (!vaccinated.equalsIgnoreCase("ja") && !vaccinated.equalsIgnoreCase("nej")) {
-                System.out.println("Ikke gyldig indtastning. Skriv ja eller nej: ");
+            if (!vaccinated.equalsIgnoreCase("yes") && !vaccinated.equalsIgnoreCase("no")) {
+                System.out.println("Not a valid entry. Enter yes or no: ");
             }
-        } while (!vaccinated.equalsIgnoreCase("ja") && !vaccinated.equalsIgnoreCase("nej"));
-        if (vaccinated.equalsIgnoreCase("nej")) {
-            System.out.println("Hunden skal være vaccineret for at kunne blive passet her!\nDu sendes tilbage til hundemenuen.");
+        } while (!vaccinated.equalsIgnoreCase("yes") && !vaccinated.equalsIgnoreCase("no"));
+        if (vaccinated.equalsIgnoreCase("no")) {
+            System.out.println("The dog needs to be vaccinated to stay here!\nYou will now return to the dog menu.");
             return null;
         }
 
-        //Makes sure to write only "ja" or "nej" to the database and checks whether the dog has met the requirement of flea treatment. If not, the user is sent back to the menu of the dog.
+        //Makes sure to write only "yes" or "no" to the database and checks whether the dog has met the requirement of flea treatment. If not, the user is sent back to the menu of the dog.
         String fleaTreatment;
         do {
-            System.out.println("Har hunden fået loppebehandling? Skriv ja eller nej: ");
+            System.out.println("Have the dog had a flea treatment? Enter yes or no: ");
             fleaTreatment = input.nextLine();
-            if (!fleaTreatment.equalsIgnoreCase("ja") && !fleaTreatment.equalsIgnoreCase("nej")) {
-                System.out.println("Ikke gyldig indtastning. Skriv ja eller nej: ");
+            if (!fleaTreatment.equalsIgnoreCase("yes") && !fleaTreatment.equalsIgnoreCase("no")) {
+                System.out.println("Not a valid entry. Enter yes or no: ");
             }
-        } while (!fleaTreatment.equalsIgnoreCase("ja") && !fleaTreatment.equalsIgnoreCase("nej"));
-        if (fleaTreatment.equalsIgnoreCase("nej")) {
-            System.out.println("Hunden skal være loppebehandlet for at kunne blive passet her!\nDu sendes tilbage til hundemenuen.");
+        } while (!fleaTreatment.equalsIgnoreCase("yes") && !fleaTreatment.equalsIgnoreCase("no"));
+        if (fleaTreatment.equalsIgnoreCase("no")) {
+            System.out.println("The dog must have been treated for fleas to stay here!\nYou will now return to the dog menu.");
             return null;
         }
 
-        System.out.println("Indtast hundens forsikringsselskab og policenummer: ");
+        System.out.println("Enter the insurance company and policy number for the dog: ");
         String insuranceCompany = input.nextLine();
 
         return new Dog(dogID, ownerID, dogName, birthdate, breed, specialNeeds, preferredVet, vaccinated, fleaTreatment, insuranceCompany);
